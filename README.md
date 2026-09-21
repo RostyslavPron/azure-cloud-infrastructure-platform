@@ -1,2 +1,15 @@
-# azure-cloud-infrastructure-platform
-Secure and scalable cloud infrastructure platform built on Microsoft Azure using Infrastructure as Code, serverless computing, network security, secrets management, and cost governance.
+# Azure Cloud Infrastructure Platform
+
+## Overview
+
+This project demonstrates the design and deployment of a secure,
+scalable, and cost-efficient cloud environment on Microsoft Azure.
+
+The implementation includes:
+
+- Infrastructure as Code (ARM Templates)
+- Azure Functions
+- Azure Key Vault
+- Azure Network Security Groups
+- Azure Cloud Shell Automation
+- Azure Cost Management
