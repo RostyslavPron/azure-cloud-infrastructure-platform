@@ -13,3 +13,6 @@ The implementation includes:
 - Azure Network Security Groups
 - Azure Cloud Shell Automation
 - Azure Cost Management
+
+## Architecture
+![Diagram Display Error](architecture/architecture-diagram.png)
