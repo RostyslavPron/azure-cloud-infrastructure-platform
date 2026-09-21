@@ -16,3 +16,22 @@ The implementation includes:
 
 ## Architecture
 ![Diagram Display Error](architecture/architecture-diagram.png)
+
+## Technologies
+
+- Microsoft Azure
+- ARM Templates
+- Azure Functions
+- Azure Key Vault
+- Azure CLI
+- Network Security Groups
+- Azure Cost Management
+
+## Skills Demonstrated
+
+- Cloud Architecture
+- Infrastructure as Code
+- Security Hardening
+- Automation
+- Governance
+- Cost Optimization
