@@ -27,7 +27,7 @@ This project demonstrates how Azure services can be combined to support:
 
 ## Solution Architecture
 
-![Diagram Display Error](architecture/architecture-diagram.png)
+![Diagram Display Error](screenshots/architecture-diagram.png)
 
 The platform consists of six core components:
 
