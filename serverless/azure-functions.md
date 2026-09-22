@@ -15,6 +15,6 @@ without managing underlying infrastructure.
 - Lower operational overhead
 - Pay-per-use pricing
 
-![Image Error](azure-cloud-infrastructure-platform/screenshots/azure-functions/Picture1.png)
-![Image Error](azure-cloud-infrastructure-platform/screenshots/azure-functions/Picture2.png)
-![Image Error](azure-cloud-infrastructure-platform/screenshots/azure-functions/Picture3.png)
+![Image Error](../screenshots/azure-functions/Picture1.png)
+![Image Error](../screenshots/azure-functions/Picture2.png)
+![Image Error](../screenshots/azure-functions/Picture3.png)
