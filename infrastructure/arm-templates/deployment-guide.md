@@ -9,4 +9,4 @@ templates to ensure consistent and repeatable deployments.
 - Faster deployments
 - Reduced configuration drift
 
-![Image Error](../screenshots/deployment-guide/Picture4.png)
+![Image Error](../../screenshots/deployment-guide/Picture4.png)
