@@ -14,3 +14,7 @@ without managing underlying infrastructure.
 - Automatic scaling
 - Lower operational overhead
 - Pay-per-use pricing
+
+![Image Error](screenshots/azure-functions/Picture1.png)
+![Image Error](screenshots/azure-functions/Picture2.png)
+![Image Error](screenshots/azure-functions/Picture3.png)
