@@ -1,391 +1,263 @@
-# Azure Cloud Shell Automation
+# Cloud Infrastructure Administration with Azure Cloud Shell
 
 ## Project Overview
 
-Azure Cloud Shell was used to automate the deployment, administration, and validation of cloud infrastructure resources. Using Azure CLI enabled a consistent, repeatable workflow for managing Azure services while reducing manual configuration tasks.
+This component of the platform demonstrates the deployment and administration of Azure infrastructure using Azure Cloud Shell. The implementation focused on configuring a cloud-based management environment, deploying network infrastructure, validating resources with Azure PowerShell, and managing resources through Azure CLI.
 
-## Business Objective
-
-The objective was to establish an operational workflow capable of:
-
-- Deploying Azure resources efficiently
-- Managing infrastructure through command-line automation
-- Validating resource configurations
-- Supporting Infrastructure as Code deployments
-- Improving deployment consistency and operational efficiency
+By using command-line administration tools, infrastructure can be deployed and maintained efficiently while reducing reliance on manual portal-based configuration.
 
 ---
 
-# Solution Architecture
+# Business Scenario
 
-Azure Cloud Shell served as the primary administration environment for:
+Cloud administrators require secure and consistent methods for managing infrastructure resources across environments. Browser-based administration tools provide flexibility while supporting automation and operational efficiency.
 
-- Resource Group Management
-- Infrastructure Deployment
-- Azure Function Administration
-- Network Security Validation
-- Key Vault Management
-- Resource Monitoring
+Azure Cloud Shell enables administrators to:
 
----
+- Provision cloud resources through command-line tools
+- Manage infrastructure remotely
+- Validate resource deployments
+- Execute automation workflows
+- Access Azure PowerShell and Azure CLI from a centralized environment
 
-# Environment Verification
-
-## Verify Active Azure Subscription
-
-```bash
-az account show
-```
-
-### Description
-
-Displays the currently authenticated Azure subscription and tenant information.
-
-### Outcome
-
-Confirmed access to the target Azure subscription before resource deployment.
+To support these requirements, Azure Cloud Shell was configured and used to deploy and validate Azure networking resources.
 
 ---
 
-## List Available Subscriptions
+# Objectives
 
-```bash
-az account list --output table
-```
-
-### Description
-
-Displays all available Azure subscriptions associated with the account.
-
-### Outcome
-
-Verified the correct subscription was selected for deployment activities.
+- Configure Azure Cloud Shell
+- Deploy Azure Virtual Network (VNet) resources
+- Validate resource deployment using Azure PowerShell
+- Manage cloud resources using Azure CLI 2.0
+- Demonstrate command-line based cloud administration
 
 ---
 
-# Resource Group Management
+# Solution Components
 
-## Create Resource Group
+## Azure Cloud Shell
 
-```bash
-az group create \
-    --name rg-cloud-platform \
-    --location eastus
-```
+Azure Cloud Shell was configured as the primary administration environment for the project.
 
-### Description
+### Purpose
 
-Creates a resource group used to organize infrastructure components.
-
-### Outcome
-
-Successfully provisioned a centralized container for all project resources.
-
----
-
-## Verify Resource Group
-
-```bash
-az group show \
-    --name rg-cloud-platform
-```
-
-### Description
-
-Validates that the resource group was successfully created.
-
-### Outcome
-
-Confirmed successful deployment and configuration.
-
----
-
-# Infrastructure as Code Deployment
-
-## Validate ARM Template
-
-```bash
-az deployment group validate \
-    --resource-group rg-cloud-platform \
-    --template-file template.json
-```
-
-### Description
-
-Performs a validation check against the ARM template before deployment.
+- Provide browser-based cloud administration
+- Enable Azure PowerShell access
+- Enable Azure CLI access
+- Support infrastructure deployment and management
 
 ### Benefits
 
-- Detects configuration issues early
-- Reduces deployment failures
-- Improves infrastructure reliability
+- No local software installation required
+- Built-in Azure authentication
+- Consistent administration environment
+- Remote accessibility
 
 ---
 
-## Deploy ARM Template
+## Azure Virtual Network (VNet)
 
-```bash
-az deployment group create \
-    --resource-group rg-cloud-platform \
-    --template-file template.json
-```
+A Virtual Network was deployed to provide the foundational network layer for Azure resources.
 
-### Description
+### Purpose
 
-Deploys Azure resources using Infrastructure as Code principles.
+- Establish logical network boundaries
+- Enable communication between resources
+- Support future cloud workload deployments
 
 ### Benefits
 
-- Repeatable deployments
-- Version-controlled infrastructure
-- Reduced configuration drift
+- Network isolation
+- Improved resource organization
+- Scalable cloud architecture
 
 ---
 
-# Azure Function Deployment
+## Azure PowerShell
 
-## Create Storage Account
+Azure PowerShell was used to verify deployed resources and review network configurations.
 
-```bash
-az storage account create \
-    --name cloudplatformstorage01 \
-    --resource-group rg-cloud-platform \
-    --location eastus \
-    --sku Standard_LRS
-```
+### Purpose
 
-### Description
-
-Creates storage required by the Azure Function App.
-
-### Outcome
-
-Provisioned storage services supporting serverless operations.
-
----
-
-## Create Azure Function App
-
-```bash
-az functionapp create \
-    --resource-group rg-cloud-platform \
-    --consumption-plan-location eastus \
-    --runtime dotnet \
-    --functions-version 4 \
-    --name cloud-platform-function \
-    --storage-account cloudplatformstorage01
-```
-
-### Description
-
-Deploys a serverless Function App within Azure.
+- Validate infrastructure deployment
+- Query resource properties
+- Confirm operational status
 
 ### Benefits
 
-- Automatic scaling
-- Reduced operational overhead
-- Consumption-based pricing model
+- Scripted administration
+- Improved visibility into resource configurations
+- Efficient infrastructure validation
 
 ---
 
-## Verify Function App
+## Azure CLI 2.0
 
-```bash
-az functionapp show \
-    --name cloud-platform-function \
-    --resource-group rg-cloud-platform
-```
+Azure CLI commands were used to manage and retrieve infrastructure information from Azure resources.
 
-### Description
+### Purpose
 
-Retrieves Function App configuration and status information.
-
-### Outcome
-
-Confirmed successful deployment and availability.
-
----
-
-# Network Security Administration
-
-## List Network Security Groups
-
-```bash
-az network nsg list \
-    --resource-group rg-cloud-platform \
-    --output table
-```
-
-### Description
-
-Displays Network Security Groups associated with the environment.
-
-### Outcome
-
-Verified security controls were successfully deployed.
-
----
-
-## Review Security Rules
-
-```bash
-az network nsg rule list \
-    --resource-group rg-cloud-platform \
-    --nsg-name platform-nsg \
-    --output table
-```
-
-### Description
-
-Displays inbound and outbound security rules.
-
-### Outcome
-
-Validated implementation of least-privilege access policies.
-
----
-
-# Azure Key Vault Management
-
-## Create Key Vault
-
-```bash
-az keyvault create \
-    --name kv-cloud-platform \
-    --resource-group rg-cloud-platform \
-    --location eastus
-```
-
-### Description
-
-Creates a centralized service for secure secret storage.
+- Manage cloud resources
+- Query deployment information
+- Perform command-line administration tasks
 
 ### Benefits
 
-- Enhanced security posture
-- Centralized credential management
-- Reduced exposure of sensitive information
+- Cross-platform support
+- Automation-friendly workflows
+- Fast infrastructure management
 
 ---
 
-## Store Secret
+# Implementation Workflow
 
-```bash
-az keyvault secret set \
-    --vault-name kv-cloud-platform \
-    --name DatabasePassword \
-    --value "ExamplePassword123"
-```
+The following workflow was completed:
 
-### Description
+1. Configure Azure Cloud Shell.
+2. Verify administrative access to Azure resources.
+3. Deploy an Azure Virtual Network.
+4. Review deployed infrastructure.
+5. Validate deployment using Azure PowerShell commands.
+6. Manage resources using Azure CLI 2.0 commands.
+7. Confirm successful deployment and configuration.
 
-Stores sensitive data securely within Key Vault.
+---
+
+# Azure Cloud Shell Configuration
+
+Azure Cloud Shell was configured and verified before resource deployment activities began.
+
+### Activities Completed
+
+- Launched Azure Cloud Shell
+- Verified Azure subscription access
+- Confirmed Azure PowerShell availability
+- Confirmed Azure CLI availability
 
 ### Outcome
 
-Credentials were protected from exposure within application code and configuration files.
+Successfully established a cloud-based administration environment capable of supporting infrastructure deployment and management activities.
 
 ---
 
-## Retrieve Secret
+# Virtual Network Deployment
 
-```bash
-az keyvault secret show \
-    --vault-name kv-cloud-platform \
-    --name DatabasePassword
-```
+A Virtual Network was deployed within Azure to provide a foundation for resource connectivity and network segmentation.
 
-### Description
+### Activities Completed
 
-Retrieves secret information for validation purposes.
+- Created Azure Virtual Network resources
+- Configured networking parameters
+- Established logical network boundaries
+- Verified successful deployment
 
 ### Outcome
 
-Confirmed successful secret storage and retrieval.
+Successfully provisioned cloud networking infrastructure for future workloads.
 
 ---
 
-# Resource Inventory and Monitoring
+# Infrastructure Validation Using Azure PowerShell
 
-## List Resources
+Azure PowerShell commands were used to verify deployment status and review Virtual Network configurations.
 
-```bash
-az resource list \
-    --resource-group rg-cloud-platform \
-    --output table
-```
+### Activities Completed
 
-### Description
+- Queried deployed resources
+- Reviewed Virtual Network settings
+- Verified deployment completion
+- Examined resource properties
 
-Displays all deployed resources within the resource group.
+### Screenshot
+
+![Image Error](../screenshots/cloud-shell-commands/Picture6.png)
+
+*Figure 1. Azure PowerShell commands used to validate the deployed Virtual Network and review resource configuration.*
 
 ### Outcome
 
-Generated a complete inventory of deployed infrastructure.
+Verified that the Virtual Network was successfully deployed and configured according to project requirements.
 
 ---
 
-## Monitor Resource Health
+# Resource Administration Using Azure CLI 2.0
 
-```bash
-az resource list \
-    --resource-group rg-cloud-platform \
-    --query "[].{Name:name,Type:type}" \
-    --output table
-```
+Azure CLI 2.0 commands were used to interact with Azure resources and perform administrative tasks.
 
-### Description
+### Activities Completed
 
-Provides a simplified view of deployed resources.
+- Executed Azure CLI management commands
+- Queried resource information
+- Retrieved deployment details
+- Reviewed infrastructure configuration
 
 ### Outcome
 
-Validated successful deployment of cloud components.
+Successfully demonstrated cloud administration using Azure CLI within Azure Cloud Shell.
+
+> Note: Azure CLI activities were completed during implementation; screenshots were not captured for this portion of the project.
 
 ---
 
-# Validation Checklist
+# Architecture
 
-The following validation activities were completed:
-
-- [x] Azure subscription verified
-- [x] Resource group created
-- [x] ARM template validated
-- [x] Infrastructure deployed successfully
-- [x] Storage account provisioned
-- [x] Azure Function App deployed
-- [x] Network security verified
-- [x] Azure Key Vault configured
-- [x] Secrets stored securely
-- [x] Resource inventory validated
+```text
+Azure Cloud Shell
+        │
+        ├─────────────► Azure PowerShell
+        │                     │
+        │                     ▼
+        │              Resource Validation
+        │
+        └─────────────► Azure CLI
+                              │
+                              ▼
+                   Azure Resource Management
+                              │
+                              ▼
+                     Virtual Network (VNet)
+```
 
 ---
 
-# Results
+# Validation Results
 
-Azure Cloud Shell and Azure CLI were successfully used to automate infrastructure administration tasks throughout the project lifecycle. The implementation demonstrated the practical application of cloud automation, Infrastructure as Code, serverless deployment, security administration, and operational monitoring within Microsoft Azure.
+### Validation Checklist
 
-Key outcomes included:
+- [x] Azure Cloud Shell configured successfully
+- [x] Azure administrative tools verified
+- [x] Virtual Network deployed successfully
+- [x] Resource deployment validated
+- [x] Azure PowerShell commands executed successfully
+- [x] Azure CLI commands executed successfully
+- [x] Network configuration reviewed
+- [x] Infrastructure management workflow confirmed
 
-- Faster infrastructure deployment
-- Improved configuration consistency
-- Enhanced security management
-- Streamlined operational workflows
-- Increased deployment reliability
+---
+
+# Key Outcomes
+
+- Configured Azure Cloud Shell for infrastructure administration.
+- Deployed Azure Virtual Network resources.
+- Verified infrastructure through Azure PowerShell commands.
+- Managed cloud resources using Azure CLI 2.0.
+- Demonstrated command-line based cloud operations.
+- Improved understanding of Azure networking and resource management workflows.
 
 ---
 
 # Skills Demonstrated
 
 - Microsoft Azure
-- Azure CLI
 - Azure Cloud Shell
-- Infrastructure as Code (IaC)
-- Resource Administration
-- Cloud Automation
-- Serverless Computing
-- Azure Functions
-- Azure Key Vault
-- Network Security
-- Azure Resource Management
+- Azure PowerShell
+- Azure CLI
+- Azure Networking
+- Virtual Networks (VNets)
+- Cloud Administration
+- Infrastructure Management
+- Resource Validation
+- Network Provisioning
 - Cloud Operations
+- Azure Resource Management
